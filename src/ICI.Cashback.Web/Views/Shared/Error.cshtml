@@ -1,0 +1,14 @@
+﻿@model ICI.Cashback.Web.Models.ErrorViewModel
+@{
+	ViewData["Title"] = "Erro Inesperado";
+}
+
+<h1 class="text-danger">Oops.</h1>
+<h2 class="text-danger">Ocorreu um erro durante o processamento da requisição.</h2>
+
+@if (Model.ShowRequestId)
+{
+	<p>
+		<strong>Request ID:</strong> <code>@Model.RequestId</code>
+	</p>
+}

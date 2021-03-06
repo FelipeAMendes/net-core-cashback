@@ -1,0 +1,20 @@
+﻿@model ICI.Cashback.Application.ViewModels.Reseller.ResellerViewModel
+@{
+	ViewData["Title"] = "Cashback Acumulado";
+	TempData.TryGetValue("AccumulatedCashback", out var valueCashbackAcumulado);
+}
+
+<div class="text-center">
+	<h1 class="display-4">@ViewData["Title"]</h1>
+</div>
+
+<div class="card">
+	<div class="card-body">
+		<p class="text-left">Cashback Acumulado do(a) Revendedor(a) @Model.Name</p>
+		<p class="text-left"><strong>@valueCashbackAcumulado</strong></p>
+
+		<div class="card-footer text-right">
+			<a class="btn btn-outline-secondary" href="/purchases/reseller/@Model.Id">Voltar</a>
+		</div>
+	</div>
+</div>

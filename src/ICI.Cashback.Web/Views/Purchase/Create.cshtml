@@ -1,0 +1,27 @@
+﻿@model ICI.Cashback.Application.ViewModels.Purchase.PurchaseViewModel
+
+@{
+	ViewData["Title"] = "Cadastro de Compra";
+	var urlList = $"/purchases/list/{Model.ResellerId}";
+}
+
+<div class="text-center">
+	<h1 class="display-4">@ViewData["Title"]</h1>
+</div>
+
+<div class="card">
+	<form asp-action="Create">
+		<div class="card-body">
+			<partial name="_Purchase" />
+			<div class="card-footer text-right">
+				<partial name="_ComeBack" model="urlList" />
+				<button type="submit" class="btn btn-primary">Salvar</button>
+			</div>
+		</div>
+	</form>
+</div>
+
+@section Scripts {
+	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+	<script src="/js/purchases/purchase.js"></script>
+}

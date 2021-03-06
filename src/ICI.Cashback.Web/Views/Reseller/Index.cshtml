@@ -1,0 +1,51 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@model IEnumerable<ICI.Cashback.Application.ViewModels.Reseller.ResellerListViewModel>
+@{
+	ViewData["Title"] = "Listagem de Revendedores(as)";
+	var isAuthenticated = HttpContextAccessor.HttpContext.User.Identity.IsAuthenticated;
+}
+
+<div class="text-center">
+	<h1 class="display-4">@ViewData["Title"]</h1>
+</div>
+
+<div class="card">
+	<div class="card-body">
+		<table class="table table-hover text-dark">
+			<thead>
+				<tr>
+					<th scope="col">Id</th>
+					<th scope="col">CPF</th>
+					<th scope="col">Nome Completo</th>
+					<th scope="col">E-mail</th>
+					<th scope="col">Opção</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var resellerViewModel in Model)
+				{
+					<tr>
+						<th scope="row">@resellerViewModel.Id</th>
+						<td>@resellerViewModel.Cpf</td>
+						<td>@resellerViewModel.Name</td>
+						<td>@resellerViewModel.Email</td>
+						@if (isAuthenticated)
+						{
+							<td><a class="btn btn-outline-secondary" href="/purchases/reseller/@resellerViewModel.Id">Compras</a></td>
+							<td><a class="btn btn-outline-secondary" href="/purchases/reseller/@resellerViewModel.Id/cashback-acumulado">Cashback Acumulado</a></td>
+						}
+						else
+						{
+							<td><button class="btn btn-outline-secondary" title="Faça login para visualizar as compras" disabled>Compras</button></td>
+							<td><button class="btn btn-outline-secondary" title="Faça login para visualizar o acumulado" disabled>Cashback Acumulado</button></td>
+						}
+					</tr>
+				}
+			</tbody>
+		</table>
+		<div class="card-footer text-right">
+			<a class="btn btn-outline-secondary" href="/resellers/create">Novo</a>
+		</div>
+	</div>
+</div>

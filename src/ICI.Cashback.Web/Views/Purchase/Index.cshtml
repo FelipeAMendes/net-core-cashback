@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ICI.Cashback.Application.ViewModels.Purchase.PurchaseListViewModel>
+@{
+	ViewData["Title"] = "Listagem de Compras";
+	var resellerName = string.Empty;
+	TempData.TryGetValue("ResellerId", out var resellerId);
+
+	if (Model.Any())
+	{
+		resellerName = Model.FirstOrDefault()?.ResellerName;
+	}
+}
+
+<div class="text-center">
+	<h1 class="display-4">@ViewData["Title"]</h1>
+</div>
+
+<div class="card">
+	<div class="card-body">
+		@if (Model.Any())
+		{
+			<p class="text-left">Compras do(a) Revendedor(a) @resellerName</p>
+		}
+
+		<table class="table table-hover text-dark">
+			<thead>
+				<tr>
+					<th scope="col">Código</th>
+					<th scope="col">Valor</th>
+					<th scope="col">Data</th>
+					<th scope="col">Cashback (%)</th>
+					<th scope="col">Cashback</th>
+					<th scope="col">Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var purchaseViewModel in Model)
+				{
+					<tr>
+						<th scope="row">@purchaseViewModel.Code</th>
+						<td>@purchaseViewModel.Value</td>
+						<td>@purchaseViewModel.Date</td>
+						<td>@purchaseViewModel.CashbackPercent</td>
+						<td>@purchaseViewModel.CashbackValue</td>
+						<td>@purchaseViewModel.Status</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+		<div class="card-footer text-right">
+			<a class="btn btn-outline-secondary" href="/purchases/create/@resellerId">Nova Compra</a>
+		</div>
+	</div>
+</div>

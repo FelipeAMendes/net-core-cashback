@@ -1,0 +1,49 @@
+@using ICI.Cashback.Domain.Enums
+@using ICI.Cashback.Domain.Extensions
+@{
+	string message = null;
+	IEnumerable<string> strMessages = null;
+
+	if (TempData.Peek(MessageType.Success.ToString()) != null)
+	{
+		message = TempData[MessageType.Success.ToString()] as string;
+	}
+
+	if (TempData.Peek(MessageType.Error.ToString()) != null)
+	{
+		strMessages = TempData[MessageType.Error.ToString()] as IEnumerable<string>;
+	}
+
+	var listMessages = (strMessages ?? new List<string>()).ToList();
+	var hasMessage = !message.IsNullOrWhiteSpace() || strMessages != null && listMessages.Any();
+}
+
+@if (hasMessage)
+{
+	<script>
+		$(function() {
+
+			var options = {
+				autoClose: true,
+				progressBar: true
+			};
+
+			var toast = new Toasty(options);
+			toast.configure(options);
+
+			@if (!message.IsNullOrWhiteSpace())
+			{
+				@Html.Raw($"toast.success('{message}');")
+				;
+			}
+			else if (listMessages.Any())
+			{
+				foreach (var msg in listMessages)
+				{
+					@Html.Raw($"toast.error('{msg}');\n")
+					;
+				}
+			}
+		});
+	</script>
+}

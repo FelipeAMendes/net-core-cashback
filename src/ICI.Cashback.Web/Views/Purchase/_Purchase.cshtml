@@ -1,0 +1,47 @@
+﻿@using ICI.Cashback.Domain.Extensions
+@model ICI.Cashback.Application.ViewModels.Purchase.PurchaseViewModel
+@{
+	var statusDescription = Model.Status.GetDisplayName();
+}
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="row">
+	<div class="col-3">
+		<div class="form-group">
+			<label asp-for="Code" class="control-label"></label>
+			<input asp-for="Code" class="form-control" />
+			<span asp-validation-for="Code" class="text-danger"></span>
+		</div>
+	</div>
+	<div class="col">
+		<div class="form-group">
+			<label asp-for="Value" class="control-label"></label>
+			<input asp-for="Value" class="form-control" />
+			<span asp-validation-for="Value" class="text-danger"></span>
+		</div>
+	</div>
+	<div class="col">
+		<div class="form-group">
+			<label asp-for="Date" class="control-label"></label>
+			<input asp-for="Date" class="form-control" />
+			<span asp-validation-for="Date" class="text-danger"></span>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-4">
+		<div class="form-group">
+			<label asp-for="ResellerCpf" class="control-label"></label>
+			<input asp-for="ResellerCpf" class="form-control" disabled />
+			<span asp-validation-for="ResellerCpf" class="text-danger"></span>
+		</div>
+	</div>
+	<div class="col">
+		<div class="form-group">
+			<input name="Status" asp-for="Status" type="hidden" />
+			<label asp-for="Status" class="control-label"></label>
+			<input type="text" value="@statusDescription" class="form-control" disabled />
+			<span asp-validation-for="Status" class="text-danger"></span>
+		</div>
+	</div>
+</div>

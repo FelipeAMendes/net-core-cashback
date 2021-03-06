@@ -1,0 +1,40 @@
+﻿@model ICI.Cashback.Application.ViewModels.Reseller.ResellerLoginViewModel
+
+@{
+	ViewData["Title"] = "Autenticação";
+}
+
+<div class="text-center">
+	<h1 class="display-4">@ViewData["Title"]</h1>
+</div>
+
+<div class="row justify-content-md-center">
+	<div class="col-6">
+		<div class="card">
+			<form asp-action="Login">
+				<div class="card-body">
+					<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+					<div class="form-group">
+						<label asp-for="Cpf" class="control-label"></label>
+						<input asp-for="Cpf" class="form-control" />
+						<span asp-validation-for="Cpf" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="Password" class="control-label"></label>
+						<input asp-for="Password" class="form-control" />
+						<span asp-validation-for="Password" class="text-danger"></span>
+					</div>
+					<div class="card-footer text-right">
+						<button type="submit" class="btn btn-primary">Entrar</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+	<script src="/lib/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+	<script src="/js/resellers/login.js"></script>
+}

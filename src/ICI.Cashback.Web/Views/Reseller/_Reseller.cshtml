@@ -1,0 +1,54 @@
+﻿@model ICI.Cashback.Application.ViewModels.Reseller.ResellerViewModel
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="row">
+	<div class="col-3">
+		<div class="form-group">
+			<label asp-for="Cpf" class="control-label"></label>
+			<input asp-for="Cpf" class="form-control" />
+			<span asp-validation-for="Cpf" class="text-danger"></span>
+		</div>
+	</div>
+	<div class="col">
+		<div class="form-group">
+			<label asp-for="Name" class="control-label"></label>
+			<input asp-for="Name" class="form-control" />
+			<span asp-validation-for="Name" class="text-danger"></span>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col">
+		<div class="form-group">
+			<label asp-for="Email" class="control-label"></label>
+			<input asp-for="Email" class="form-control" />
+			<span asp-validation-for="Email" class="text-danger"></span>
+		</div>
+	</div>
+	<div class="col">
+		<div class="form-group">
+			<label asp-for="EmailConfirmation" class="control-label"></label>
+			<input asp-for="EmailConfirmation" class="form-control" />
+			<span asp-validation-for="EmailConfirmation" class="text-danger"></span>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-4">
+		<div class="form-group">
+			<label asp-for="Password" class="control-label"></label>
+			<input asp-for="Password" class="form-control" data-rule-minPasswordScore="50" data-msg-minPasswordScore="Informe uma senha mais forte." />
+			<span asp-validation-for="Password" class="text-danger"></span>
+		</div>
+	</div>
+	<div class="col-4">
+		<div class="form-group">
+			<label asp-for="PasswordConfirmation" class="control-label"></label>
+			<input asp-for="PasswordConfirmation" class="form-control" />
+			<span asp-validation-for="PasswordConfirmation" class="text-danger"></span>
+		</div>
+	</div>
+	<div class="col-4">
+		<div class="mt-5 progress-bar" id="progress"></div>
+	</div>
+</div>
